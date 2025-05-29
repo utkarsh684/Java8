@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
+import java.util.function.Function;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -42,15 +40,24 @@ public class DemoApplication {
 		// Collections.sort(li, (a,b) -> a.id-b.id);
 		// System.out.println(li);
 
-		Predicate<Integer> isEven = x -> x%2==0;
-		List<Integer> li=Arrays.asList(1,2,3,4);
-		for(Integer i:li){
-			if(isEven.test(i)){
-				System.out.println(i);
-			}
-		}
-		Predicate<String> hello =x -> x.toLowerCase().charAt(0)=='a';
-		System.out.println(hello.test("bout"));
+		// Predicate<Integer> isEven = x -> x%2==0;    // use of predicate functional interface
+		// List<Integer> li=Arrays.asList(1,2,3,4);
+		// for(Integer i:li){
+		// 	if(isEven.test(i)){
+		// 		System.out.println(i);
+		// 	}
+		// }
+		// Predicate<String> hello =x -> x.toLowerCase().charAt(0)=='a';
+		// System.out.println(hello.test("bout"));
+
+		Function<String,Integer> function =x -> x.length();   // use of Function functional interface
+		System.out.println(function.apply("utkarsh"));  //7
+
+		Function<Integer,Integer> function1=x-> 2*x;
+		Function<Integer,Integer> function2=x->x*x;
+		System.out.println(function1.andThen(function2).apply(2)); //16
+		System.out.println(function2.andThen(function1).apply(2)); //8
+		System.out.println(function1.compose(function2).apply(2));  //8
 
 		//SpringApplication.run(DemoApplication.class, args);
 		
