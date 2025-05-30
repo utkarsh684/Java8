@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -58,6 +60,12 @@ public class DemoApplication {
 		System.out.println(function1.andThen(function2).apply(2)); //16
 		System.out.println(function2.andThen(function1).apply(2)); //8
 		System.out.println(function1.compose(function2).apply(2));  //8
+
+		Consumer<Integer> consumer = x -> System.out.println(x);
+		consumer.accept(5);
+
+		Supplier<Integer> supply =() -> 100;
+		System.out.println(supply.get());
 
 		//SpringApplication.run(DemoApplication.class, args);
 		
